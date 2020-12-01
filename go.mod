@@ -1,4 +1,4 @@
-module github.com/wedojava/gears
+module github.com/hi20160616/gears
 
 go 1.14
 
