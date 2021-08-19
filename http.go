@@ -5,8 +5,6 @@ import (
 	"net/http"
 	"regexp"
 	"time"
-
-	"github.com/pkg/errors"
 )
 
 // HttpGetBody request url to get Html Body, if get error occur it'll try n times.
@@ -18,15 +16,15 @@ func HttpGetBody(url string, n int) (string, error) {
 		n--
 	}
 	if err != nil {
-		return "", errors.Wrapf(err, "\n[-] gears.HttpGetBody()>Get() try times, but error occur still!\n[-] ")
+		return "", err
 	}
 	rawBody, err := ioutil.ReadAll(raw.Body)
 	defer raw.Body.Close()
 	if err != nil {
-		return "", errors.Wrap(err, "\n[-] gears.HttpGetBody()>ReadAll() Error!\n[-] ")
+		return "", err
 	}
 	if raw.StatusCode != 200 {
-		return "", errors.Wrap(err, "\n[-] gears.HttpGetBody()>Get() Error! Message: Cannot open the url.\n[-] ")
+		return "", err
 	}
 	return string(rawBody), nil
 }
