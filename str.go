@@ -31,6 +31,8 @@ func ReplaceIllegalChar(s *string) {
 	*s = strings.ReplaceAll(*s, "<", "《")
 	*s = strings.ReplaceAll(*s, ">", "》")
 	*s = strings.ReplaceAll(*s, "\"", "“")
+	*s = strings.ReplaceAll(*s, "『", "“")
+	*s = strings.ReplaceAll(*s, "』", "”")
 }
 
 // StrSliceDeDupl is used for string slice deduplication
