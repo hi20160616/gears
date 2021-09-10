@@ -16,11 +16,18 @@ func PrintSlice(x []string) {
 	fmt.Printf("len=%d cap=%d slice=%v\n", len(x), cap(x), x)
 }
 
+// RmIllegalChar is obsoleted, suggest DelIllegalChar
 func RmIllegalChar(s *string) {
 	var re = regexp.MustCompile(`[\/:*?"<>|]`)
 	*s = re.ReplaceAllString(*s, "")
 }
 
+func DelIllegalChar(s string) string {
+	var re = regexp.MustCompile(`[\/:*?"<>|]`)
+	return re.ReplaceAllString(s, "")
+}
+
+// ReplaceIllegalChar is obsoleted, suggest ChangeIllegalChar
 func ReplaceIllegalChar(s *string) {
 	*s = strings.ReplaceAll(*s, "\\", "、")
 	*s = strings.ReplaceAll(*s, "/", "／")
@@ -33,6 +40,22 @@ func ReplaceIllegalChar(s *string) {
 	*s = strings.ReplaceAll(*s, "\"", "“")
 	*s = strings.ReplaceAll(*s, "『", "“")
 	*s = strings.ReplaceAll(*s, "』", "”")
+}
+
+func ChangeIllegalChar(s string) string {
+	rp := strings.NewReplacer(
+		"\\", "、",
+		"/", "／",
+		"?", "？",
+		":", "：",
+		"*", "＊",
+		"<", "《",
+		">", "》",
+		"\"", "“",
+		"『", "“",
+		"』", "”",
+	)
+	return rp.Replace(s)
 }
 
 // StrSliceDeDupl is used for string slice deduplication
