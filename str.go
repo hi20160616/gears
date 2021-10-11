@@ -54,6 +54,8 @@ func ChangeIllegalChar(s string) string {
 		"\"", "“",
 		"『", "“",
 		"』", "”",
+		"「", "“",
+		"」", "”",
 	)
 	return rp.Replace(s)
 }
